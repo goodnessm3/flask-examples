@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Websocketd demo{% endblock %}</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+  // from the websocketd documentation
+  // helper function: log message to screen
+  function log(msg) {
+    document.getElementById('log').textContent += msg + '\n';
+  }
+
+  // setup websocket with callbacks
+  var ws = new WebSocket('ws://localhost:8080/');
+  ws.onopen = function() {
+    log('CONNECT');
+  };
+  ws.onclose = function() {
+    log('DISCONNECT');
+  };
+  ws.onmessage = function(event) {
+    log('MESSAGE: ' + event.data);
+  };
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+<p>Stdout streamed from the command called in Flask, using a websocket:</p>
+
+<pre id="log"></pre>
+
+{% endblock %}
+
