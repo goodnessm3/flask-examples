@@ -5,4 +5,4 @@ WORKDIR /app
 COPY . .
 RUN python3 -m pip install -r requirements.txt
 
-CMD ["gunicorn", "main:app", "-b", "0.0.0.0:8000"]
+CMD ["gunicorn", "main:app", "-b", "0.0.0.0:8000", "--access-logfile", "alog.txt"]

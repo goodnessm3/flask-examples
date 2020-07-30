@@ -1,6 +1,6 @@
 from flask import Flask
 import os
-
+from subprocess import Popen
 
 def create_app(test_config=None):
 
@@ -29,5 +29,7 @@ def create_app(test_config=None):
     return app
 
 
+_ = Popen(r"websocketd/websocketd --port=8080 tail -f alog.txt", shell=True)
+# monitor the gunicorn log and have websocketd read it with tail and send it to the browser page
 app = create_app()
 
