@@ -26,6 +26,10 @@ def do_string_func(astr):
 @bp.route("/websockettest", methods=("GET",))
 def websockettest():
 
-    run(r'''websocketd\websocketd.exe --port=8080 py main\for_stdout.py''')
+    # command for windows: (Note use of forward slashes for cross-platform, it doesn't matter that Win uses \
+    # run(r'''websocketd/websocketd.exe --port=8080 py main/for_stdout.py''')
+    #run(r'''app/websocketd/websocketd --port=8080 python3 main/for_stdout.py''')
+    with open("where.txt", "w") as f:
+        f.write("test")
 
     return render_template('websocketpage/ws.html')
