@@ -1,5 +1,6 @@
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify
 import main.fxns
+import main.random_image
 
 bp = Blueprint('lookup_page', __name__, url_prefix='')
 
@@ -26,3 +27,11 @@ def do_string_func(astr):
 def websockettest():
 
     return render_template('websocketpage/ws.html')
+
+
+@bp.route("/randomimg", methods=("GET",))
+def randomimg():
+
+    fname = main.random_image.random_image()  # generate and save
+
+    return render_template('randomimg/randimg.html', fname=fname)

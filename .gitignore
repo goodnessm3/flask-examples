@@ -2,3 +2,4 @@
 .idea
 websocketd
 *.log
+*.png

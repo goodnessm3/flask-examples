@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  main:
+    build: .
+    networks:
+      - flasknet
+    ports:
+      - 8080:8080
+    working_dir: /app
+    volumes:
+      - static-content:/app/main/static
+
+  nginx:
+    build: ./nginx
+    networks:
+      - flasknet
+    expose:
+      - 8100
+    ports:
+      - 8100:8100
+    volumes:
+      - static-content:/static
+
+networks:
+  flasknet:
+
+volumes:
+  static-content:
